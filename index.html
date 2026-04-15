@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChotuLabs | Technical Marketing Hub</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Typography for beautiful content formatting -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        logo: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            900: '#1e3a8a',
+                            950: '#172554',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth scrolling and transitions */
+        html { scroll-behavior: smooth; }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom scrollbar for sidebar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="flex h-screen bg-gray-50 text-slate-800 antialiased overflow-hidden selection:bg-brand-500 selection:text-white">
+
+    <!-- Mobile menu button -->
+    <div class="lg:hidden fixed top-0 left-0 right-0 h-16 bg-brand-950 flex items-center justify-between px-4 z-50">
+        <div class="flex items-center gap-2">
+            <div class="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-brand-400 to-indigo-600 rounded-lg shadow-sm">
+                <i data-lucide="flask-conical" class="text-white w-5 h-5"></i>
+            </div>
+            <span class="text-white font-logo font-black tracking-tighter text-xl">Chotu<span class="text-brand-400">Labs</span></span>
+        </div>
+        <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+            <i data-lucide="menu"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="w-72 bg-brand-950 text-gray-300 flex flex-col transition-transform duration-300 transform -translate-x-full lg:translate-x-0 fixed lg:relative z-40 h-full border-r border-brand-900 shadow-xl">
+        
+        <div class="p-6 border-b border-brand-900 hidden lg:flex items-center gap-3">
+            <div class="relative flex items-center justify-center w-10 h-10 bg-gradient-to-br from-brand-400 to-indigo-600 rounded-xl shadow-lg shadow-brand-500/30">
+                <i data-lucide="flask-conical" class="text-white w-6 h-6"></i>
+            </div>
+            <div>
+                <h1 class="text-white font-logo font-black text-2xl leading-tight tracking-tighter">Chotu<span class="text-brand-400">Labs</span></h1>
+                <p class="text-gray-400 text-xs font-mono mt-1 tracking-wider">TRAINING HUB</p>
+            </div>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+            <p class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 mt-4 lg:mt-0">Overview</p>
+            <a href="#" onclick="switchView('home')" class="nav-link active flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-brand-900 hover:text-white transition-colors" data-target="home">
+                <i data-lucide="home" class="w-5 h-5"></i>
+                <span class="font-medium">Dashboard</span>
+            </a>
+
+            <p class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 mt-6">The Curriculum</p>
+            <a href="#" onclick="switchView('module-1')" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-brand-900 hover:text-white transition-colors group" data-target="module-1">
+                <i data-lucide="search" class="w-5 h-5 text-gray-400 group-hover:text-brand-400"></i>
+                <span class="font-medium text-sm">1. Technical SEO</span>
+            </a>
+            <a href="#" onclick="switchView('module-2')" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-brand-900 hover:text-white transition-colors group" data-target="module-2">
+                <i data-lucide="bar-chart-2" class="w-5 h-5 text-gray-400 group-hover:text-brand-400"></i>
+                <span class="font-medium text-sm">2. Advanced Analytics</span>
+            </a>
+            <a href="#" onclick="switchView('module-3')" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-brand-900 hover:text-white transition-colors group" data-target="module-3">
+                <i data-lucide="workflow" class="w-5 h-5 text-gray-400 group-hover:text-brand-400"></i>
+                <span class="font-medium text-sm">3. Automation & APIs</span>
+            </a>
+            <a href="#" onclick="switchView('module-4')" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-brand-900 hover:text-white transition-colors group" data-target="module-4">
+                <i data-lucide="database" class="w-5 h-5 text-gray-400 group-hover:text-brand-400"></i>
+                <span class="font-medium text-sm">4. Data Engineering</span>
+            </a>
+            <a href="#" onclick="switchView('module-5')" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-brand-900 hover:text-white transition-colors group" data-target="module-5">
+                <i data-lucide="code" class="w-5 h-5 text-gray-400 group-hover:text-brand-400"></i>
+                <span class="font-medium text-sm">5. Web Fundamentals</span>
+            </a>
+
+            <p class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 mt-6">Resources</p>
+            <a href="#" onclick="switchView('sandbox')" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-brand-900 hover:text-white transition-colors group" data-target="sandbox">
+                <i data-lucide="box" class="w-5 h-5 text-gray-400 group-hover:text-amber-400"></i>
+                <span class="font-medium text-sm">The Sandbox</span>
+            </a>
+            <a href="#" onclick="switchView('library')" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-brand-900 hover:text-white transition-colors group" data-target="library">
+                <i data-lucide="library" class="w-5 h-5 text-gray-400 group-hover:text-purple-400"></i>
+                <span class="font-medium text-sm">Resource & SOPs</span>
+            </a>
+            <a href="#" onclick="switchView('challenges')" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-brand-900 hover:text-white transition-colors group" data-target="challenges">
+                <i data-lucide="swords" class="w-5 h-5 text-gray-400 group-hover:text-red-400"></i>
+                <span class="font-medium text-sm">Practice Challenges</span>
+            </a>
+        </nav>
+        
+        <div class="p-4 border-t border-brand-900">
+            <div class="flex items-center gap-3">
+                <img src="https://ui-avatars.com/api/?name=Marketing+Team&background=2563eb&color=fff" alt="User" class="w-8 h-8 rounded-full">
+                <div>
+                    <p class="text-sm text-white font-medium">Growth Team</p>
+                    <p class="text-xs text-gray-500">Internal Training</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 overflow-y-auto relative pt-16 lg:pt-0">
+        
+        <!-- ================= HOME VIEW ================= -->
+        <section id="view-home" class="content-view p-6 lg:p-10 max-w-5xl mx-auto fade-in">
+            <header class="mb-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold uppercase tracking-wide mb-4">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    </span>
+                    Live Dashboard
+                </div>
+                <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Welcome to <span class="font-logo font-black tracking-tighter text-brand-600">ChotuLabs</span></h2>
+                <p class="text-lg text-slate-600 max-w-3xl">Transforming operators into growth engineers. This hub contains everything you need to master the technical side of modern digital marketing.</p>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center mb-4 text-indigo-600">
+                        <i data-lucide="book-open"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">5 Core Modules</h3>
+                    <p class="text-slate-500 text-sm">Comprehensive guides covering SEO, Analytics, Data, and Code.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center mb-4 text-amber-600">
+                        <i data-lucide="box"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Safe Sandboxes</h3>
+                    <p class="text-slate-500 text-sm">Real WordPress and GA4 environments to practice without fear.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mb-4 text-emerald-600">
+                        <i data-lucide="target"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Practical Challenges</h3>
+                    <p class="text-slate-500 text-sm">Real-world scenarios to test your skills and build muscle memory.</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="p-6 border-b border-gray-100 bg-slate-50/50">
+                    <h3 class="font-bold text-lg flex items-center gap-2">
+                        <i data-lucide="zap" class="text-yellow-500 w-5 h-5"></i> Latest Updates
+                    </h3>
+                </div>
+                <div class="divide-y divide-gray-100">
+                    <div class="p-4 hover:bg-gray-50 flex items-start gap-4 transition-colors">
+                        <div class="mt-1 w-2 h-2 rounded-full bg-brand-500 flex-shrink-0"></div>
+                        <div>
+                            <p class="font-medium text-slate-900">Added new Server-Side Tracking SOP</p>
+                            <p class="text-sm text-slate-500 mt-1">Updated documentation on how we handle CAPI via Google Cloud Run.</p>
+                            <span class="text-xs text-slate-400 mt-2 block">2 days ago</span>
+                        </div>
+                    </div>
+                    <div class="p-4 hover:bg-gray-50 flex items-start gap-4 transition-colors">
+                        <div class="mt-1 w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></div>
+                        <div>
+                            <p class="font-medium text-slate-900">Sandbox DB Refreshed</p>
+                            <p class="text-sm text-slate-500 mt-1">The dummy SQL database has been refreshed with Q3 synthetic data for practice queries.</p>
+                            <span class="text-xs text-slate-400 mt-2 block">1 week ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= MODULE 1 VIEW ================= -->
+        <section id="view-module-1" class="content-view p-6 lg:p-10 max-w-4xl mx-auto hidden fade-in">
+            <article class="prose prose-slate prose-lg max-w-none">
+                <span class="text-brand-600 font-bold tracking-wider uppercase text-sm">Module 1</span>
+                <h1 class="mt-2 mb-8">Technical SEO & Site Architecture</h1>
+                
+                <p class="lead">Moving beyond keywords and content to understand how search engines crawl, render, and index our web properties.</p>
+
+                <hr>
+
+                <h2>1. Crawling & Indexing Diagnostics</h2>
+                <p>Understanding the fundamental relationship between your site's architecture and the crawler budget.</p>
+                <ul>
+                    <li><strong><code>robots.txt</code> best practices:</strong> Knowing when to <code>Disallow</code> vs when to use a <code>noindex</code> tag.</li>
+                    <li><strong>XML Sitemaps:</strong> Dynamic generation, index sitemaps, and keeping error rates below 1%.</li>
+                    <li><strong>Google Search Console:</strong> Advanced usage of the Crawl Stats report and log file analysis basics.</li>
+                </ul>
+
+                <div class="bg-slate-900 text-gray-300 p-4 rounded-lg font-mono text-sm my-6 shadow-inner">
+                    <div class="flex items-center gap-2 mb-2 text-gray-500 border-b border-slate-700 pb-2">
+                        <i data-lucide="file-code" class="w-4 h-4"></i> Example robots.txt
+                    </div>
+                    <code>User-agent: *<br>Disallow: /wp-admin/<br>Disallow: /*?filter=*<br>Allow: /wp-admin/admin-ajax.php<br><br>Sitemap: https://example.com/sitemap_index.xml</code>
+                </div>
+
+                <h2>2. Core Web Vitals (CWV)</h2>
+                <p>Performance is a ranking factor and a conversion multiplier. Learn how to diagnose CWV issues.</p>
+                <ul>
+                    <li><strong>LCP (Largest Contentful Paint):</strong> Image optimization, preload scanners, and server response times (TTFB).</li>
+                    <li><strong>INP (Interaction to Next Paint):</strong> Diagnosing long JavaScript tasks blocking the main thread.</li>
+                    <li><strong>CLS (Cumulative Layout Shift):</strong> Reserving space for images and ads, and understanding font loading (FOUT/FOIT).</li>
+                </ul>
+
+                <h2>3. Structured Data (JSON-LD)</h2>
+                <p>We do not rely on plugins for complex schema. You must know how to write and validate JSON-LD manually.</p>
+                <p>Tools to use: <a href="https://search.google.com/test/rich-results" target="_blank" class="text-brand-600">Rich Results Test</a> &amp; Schema.org documentation.</p>
+
+                <h2>4. Migrations & Redirect Mapping</h2>
+                <p>How to use Regular Expressions (Regex) to map thousands of URLs cleanly without creating redirect chains.</p>
+            </article>
+        </section>
+
+        <!-- ================= MODULE 2 VIEW ================= -->
+        <section id="view-module-2" class="content-view p-6 lg:p-10 max-w-4xl mx-auto hidden fade-in">
+            <article class="prose prose-slate prose-lg max-w-none">
+                <span class="text-brand-600 font-bold tracking-wider uppercase text-sm">Module 2</span>
+                <h1 class="mt-2 mb-8">Advanced Analytics & Tracking</h1>
+                
+                <p class="lead">Data integrity is our responsibility. Learn to deploy, test, and manage tracking architecture using GTM and GA4.</p>
+
+                <hr>
+
+                <h2>1. Google Tag Manager (GTM) Mastery</h2>
+                <p>Stop relying on developers to add basic tracking pixels. GTM is our command center.</p>
+                <ul>
+                    <li><strong>The Data Layer:</strong> Understanding `dataLayer.push()` and how to extract e-commerce data.</li>
+                    <li><strong>Custom HTML & JavaScript Variables:</strong> Writing small scripts to grab DOM elements.</li>
+                    <li><strong>Trigger Groups & Sequencing:</strong> Ensuring consent is granted *before* firing marketing tags.</li>
+                </ul>
+
+                <h2>2. GA4 Deep Dive</h2>
+                <p>Universal Analytics is dead. Understand the event-based model of GA4.</p>
+                <ul>
+                    <li>Custom event creation and parameter passing.</li>
+                    <li>Building Exploration Reports (Funnels, Pathing).</li>
+                    <li><strong>BigQuery Linking:</strong> Why raw data matters and how to set up the daily export.</li>
+                </ul>
+
+                <h2>3. Server-Side Tagging (sGTM)</h2>
+                <p>With ad-blockers and iOS privacy changes, client-side tracking is degrading. We are shifting to server-side.</p>
+                <p><em>Key Concept:</em> Instead of the user's browser sending data to Facebook/Google, it sends data to *our* cloud server, which cleans it and passes it along.</p>
+            </article>
+        </section>
+
+        <!-- ================= MODULE 3 VIEW ================= -->
+        <section id="view-module-3" class="content-view p-6 lg:p-10 max-w-4xl mx-auto hidden fade-in">
+            <article class="prose prose-slate prose-lg max-w-none">
+                 <span class="text-brand-600 font-bold tracking-wider uppercase text-sm">Module 3</span>
+                <h1 class="mt-2 mb-8">Marketing Automation & Integrations</h1>
+                <p class="lead">Connecting tools together using APIs and Webhooks to eliminate manual data entry.</p>
+                
+                <hr>
+
+                <h2>1. Webhooks & APIs</h2>
+                <p>The backbone of modern marketing stacks.</p>
+                <ul>
+                    <li><strong>Webhooks:</strong> "Don't call us, we'll call you." How systems push real-time data to specific URLs.</li>
+                    <li><strong>REST APIs:</strong> Making GET and POST requests using tools like Postman to interact with our CRM.</li>
+                    <li>Understanding Authentication (API Keys, OAuth 2.0).</li>
+                </ul>
+
+                <div class="bg-slate-900 text-gray-300 p-4 rounded-lg font-mono text-sm my-6 shadow-inner">
+                    <div class="flex items-center gap-2 mb-2 text-gray-500 border-b border-slate-700 pb-2">
+                        <i data-lucide="webhook" class="w-4 h-4"></i> Example cURL Request (POST)
+                    </div>
+                    <code>curl -X POST https://api.hubapi.com/crm/v3/objects/contacts \<br>
+                      -H "Authorization: Bearer YOUR_TOKEN" \<br>
+                      -H "Content-Type: application/json" \<br>
+                      -d '{<br>
+                        "properties": {<br>
+                          "email": "test@example.com",<br>
+                          "firstname": "John"<br>
+                        }<br>
+                      }'</code>
+                </div>
+
+                <h2>2. Advanced iPaaS (Make.com / n8n)</h2>
+                <p>Moving beyond simple Zapier automations to build complex, conditional logic flows with error handling.</p>
+            </article>
+        </section>
+
+        <!-- ================= MODULE 4 VIEW ================= -->
+        <section id="view-module-4" class="content-view p-6 lg:p-10 max-w-4xl mx-auto hidden fade-in">
+            <article class="prose prose-slate prose-lg max-w-none">
+                 <span class="text-brand-600 font-bold tracking-wider uppercase text-sm">Module 4</span>
+                <h1 class="mt-2 mb-8">Data Engineering for Marketers</h1>
+                <p class="lead">Learn to query raw data and build dashboards that actually drive business decisions.</p>
+                <hr>
+
+                <h2>1. SQL for Marketers</h2>
+                <p>You don't need to be a DBA, but you need to know how to query BigQuery to pull custom cohorts.</p>
+                <ul>
+                    <li><code>SELECT</code>, <code>FROM</code>, <code>WHERE</code>, and <code>GROUP BY</code>.</li>
+                    <li>Understanding <code>JOIN</code>s (Inner vs Left) to combine CRM data with GA4 data.</li>
+                    <li>Working with UNNEST() for GA4's nested event parameters.</li>
+                </ul>
+
+                <h2>2. Looker Studio Visualization</h2>
+                <p>Stop sending screenshots of spreadsheets. Build automated, interactive reports.</p>
+                <ul>
+                    <li>Data blending limitations and workarounds.</li>
+                    <li>Creating calculated fields using CASE statements and Regex.</li>
+                </ul>
+            </article>
+        </section>
+
+        <!-- ================= MODULE 5 VIEW ================= -->
+        <section id="view-module-5" class="content-view p-6 lg:p-10 max-w-4xl mx-auto hidden fade-in">
+             <article class="prose prose-slate prose-lg max-w-none">
+                 <span class="text-brand-600 font-bold tracking-wider uppercase text-sm">Module 5</span>
+                <h1 class="mt-2 mb-8">Web Fundamentals (Code for Marketers)</h1>
+                <p class="lead">You don't need to build apps, but you need to know how the web works to fix frontend issues and implement custom tracking.</p>
+                <hr>
+
+                <h2>1. HTML / CSS</h2>
+                <p>Understanding the DOM (Document Object Model).</p>
+                <ul>
+                    <li>Classes vs IDs (and why this matters for GTM).</li>
+                    <li>CSS Selectors (e.g., <code>div.header > a.btn</code>).</li>
+                    <li>Basic inline styling vs stylesheets.</li>
+                </ul>
+
+                <h2>2. JavaScript Basics</h2>
+                <p>Reading, understanding, and writing basic JS for marketing implementations.</p>
+                <ul>
+                    <li>Variables (<code>const</code>, <code>let</code>).</li>
+                    <li>Arrays and Objects.</li>
+                    <li>Listening to DOM events (clicks, form submits).</li>
+                    <li>Using the Browser Console for debugging errors.</li>
+                </ul>
+            </article>
+        </section>
+
+        <!-- ================= SANDBOX VIEW ================= -->
+        <section id="view-sandbox" class="content-view p-6 lg:p-10 max-w-5xl mx-auto hidden fade-in">
+            <header class="mb-10">
+                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center mb-4">
+                    <i data-lucide="box" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-slate-900 mb-2">The Sandbox</h2>
+                <p class="text-lg text-slate-600">Safe environments designed for you to test, implement, and completely break things without impacting production data.</p>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Sandbox Card -->
+                <div class="border border-gray-200 rounded-2xl p-6 bg-white shadow-sm flex flex-col">
+                    <h3 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                        <i data-lucide="layout-template" class="w-5 h-5 text-blue-500"></i> Dummy WordPress Site
+                    </h3>
+                    <p class="text-slate-600 text-sm mb-6 flex-1">A fresh WP install. Use this to practice installing tag managers, configuring SEO plugins (Yoast/RankMath), and editing headers/footers.</p>
+                    
+                    <div class="bg-slate-50 p-4 rounded-lg font-mono text-sm space-y-2 mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">URL:</span>
+                            <span class="text-slate-900">sandbox.company.com/wp-admin</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">User:</span>
+                            <span class="text-slate-900">trainee_admin</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">Pass:</span>
+                            <span class="text-slate-900">BreakThings123!</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-slate-900 text-white rounded-lg py-2.5 font-medium hover:bg-slate-800 transition-colors">Go to WP Sandbox</button>
+                </div>
+
+                <!-- Sandbox Card -->
+                <div class="border border-gray-200 rounded-2xl p-6 bg-white shadow-sm flex flex-col">
+                    <h3 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                        <i data-lucide="pie-chart" class="w-5 h-5 text-orange-500"></i> GA4 / GTM Container
+                    </h3>
+                    <p class="text-slate-600 text-sm mb-6 flex-1">A dedicated GTM container linked to a test GA4 property. Practice setting up triggers, dataLayer pushes, and custom events.</p>
+                    
+                    <div class="bg-slate-50 p-4 rounded-lg font-mono text-sm space-y-2 mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">GTM ID:</span>
+                            <span class="text-slate-900">GTM-XXXXXXX</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">GA4 Prop:</span>
+                            <span class="text-slate-900">Sandbox Environment</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">Access:</span>
+                            <span class="text-slate-900">Check Email Invite</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-slate-900 text-white rounded-lg py-2.5 font-medium hover:bg-slate-800 transition-colors">Open Tag Manager</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= LIBRARY VIEW ================= -->
+        <section id="view-library" class="content-view p-6 lg:p-10 max-w-5xl mx-auto hidden fade-in">
+            <header class="mb-10">
+                 <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center mb-4">
+                    <i data-lucide="library" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-slate-900 mb-2">Resource & SOP Library</h2>
+                <p class="text-lg text-slate-600">Standard operating procedures, cheat sheets, and technical documentation.</p>
+            </header>
+
+            <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-gray-50 border-b border-gray-200 text-gray-500">
+                        <tr>
+                            <th class="px-6 py-4 font-medium">Document Name</th>
+                            <th class="px-6 py-4 font-medium">Category</th>
+                            <th class="px-6 py-4 font-medium">Last Updated</th>
+                            <th class="px-6 py-4"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 font-medium text-slate-900 flex items-center gap-3">
+                                <i data-lucide="file-text" class="text-gray-400 w-4 h-4"></i> UTM Naming Convention Protocol
+                            </td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-blue-50 text-blue-700 rounded text-xs">Analytics</span></td>
+                            <td class="px-6 py-4 text-gray-500">Oct 12, 2024</td>
+                            <td class="px-6 py-4 text-right"><button class="text-brand-600 hover:text-brand-800 font-medium">View</button></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 font-medium text-slate-900 flex items-center gap-3">
+                                <i data-lucide="file-text" class="text-gray-400 w-4 h-4"></i> Essential Regex for Marketers
+                            </td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-purple-50 text-purple-700 rounded text-xs">Cheat Sheet</span></td>
+                            <td class="px-6 py-4 text-gray-500">Sep 05, 2024</td>
+                            <td class="px-6 py-4 text-right"><button class="text-brand-600 hover:text-brand-800 font-medium">View</button></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 font-medium text-slate-900 flex items-center gap-3">
+                                <i data-lucide="file-text" class="text-gray-400 w-4 h-4"></i> Pre-Launch Tagging Checklist
+                            </td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-green-50 text-green-700 rounded text-xs">SOP</span></td>
+                            <td class="px-6 py-4 text-gray-500">Nov 01, 2024</td>
+                            <td class="px-6 py-4 text-right"><button class="text-brand-600 hover:text-brand-800 font-medium">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================= CHALLENGES VIEW ================= -->
+        <section id="view-challenges" class="content-view p-6 lg:p-10 max-w-5xl mx-auto hidden fade-in">
+             <header class="mb-10">
+                 <div class="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center mb-4">
+                    <i data-lucide="swords" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-slate-900 mb-2">Practice Challenges</h2>
+                <p class="text-lg text-slate-600">Test your skills in real-world scenarios. No grades, just practical application.</p>
+            </header>
+
+            <div class="space-y-6">
+                <!-- Challenge 1 -->
+                <div class="bg-white border-l-4 border-blue-500 p-6 rounded-r-xl shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-blue-500 mb-1 block">Mini-Scenario</span>
+                            <h3 class="text-xl font-bold text-slate-900">The Regex Redirect Mapping</h3>
+                        </div>
+                        <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">Difficulty: Easy</span>
+                    </div>
+                    <p class="text-slate-600 mb-4">We are migrating a blog. All old URLs structure `site.com/blog/2023/post-name` need to redirect to `site.com/resources/post-name`. Write the Regex matching rule and the target substitution.</p>
+                    <button class="text-brand-600 font-medium text-sm flex items-center gap-1 hover:text-brand-800">
+                        <i data-lucide="eye" class="w-4 h-4"></i> Show Solution
+                    </button>
+                </div>
+
+                <!-- Challenge 2 -->
+                <div class="bg-white border-l-4 border-purple-500 p-6 rounded-r-xl shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-purple-500 mb-1 block">Data Scenario</span>
+                            <h3 class="text-xl font-bold text-slate-900">SQL Cohort Extraction</h3>
+                        </div>
+                        <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">Difficulty: Medium</span>
+                    </div>
+                    <p class="text-slate-600 mb-4">Download the `dummy_ecommerce.csv` file from the Sandbox. Write a SQL query (or use BigQuery sandbox) to find the total revenue generated by users whose `utm_source` was "newsletter" and who purchased more than 2 items.</p>
+                    <div class="flex gap-4">
+                        <button class="bg-slate-100 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-200">Download CSV</button>
+                        <button class="text-brand-600 font-medium text-sm flex items-center gap-1 hover:text-brand-800">
+                            <i data-lucide="eye" class="w-4 h-4"></i> Show Solution
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Final Boss -->
+                <div class="bg-slate-900 text-white border-l-4 border-red-500 p-8 rounded-r-xl shadow-lg mt-10">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i data-lucide="flame" class="text-red-500"></i>
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-400">Final Boss Project</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">The Broken Funnel Audit</h3>
+                    <p class="text-gray-300 mb-6">Log into the WP Sandbox. The "Contact Us" form submission event is firing twice in GA4, the page has a massive CLS issue, and the JSON-LD schema is throwing a syntax error. Audit the page, fix the tracking via GTM, and write a 1-page report detailing the fixes.</p>
+                    <button class="bg-brand-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-brand-500 transition-colors">Start Final Project</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // View Switching Logic (SPA Simulation)
+        function switchView(targetId) {
+            // Hide all views
+            const views = document.querySelectorAll('.content-view');
+            views.forEach(view => {
+                view.classList.add('hidden');
+                // Remove fade-in to reset animation
+                view.classList.remove('fade-in');
+            });
+
+            // Show target view
+            const targetView = document.getElementById('view-' + targetId);
+            if(targetView) {
+                targetView.classList.remove('hidden');
+                // Small delay to ensure display block is applied before animation
+                setTimeout(() => targetView.classList.add('fade-in'), 10);
+                window.scrollTo(0, 0); // Scroll to top
+            }
+
+            // Update active state in sidebar
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.classList.remove('bg-brand-900', 'text-white');
+                link.classList.add('text-gray-300');
+            });
+            
+            const activeLink = document.querySelector(`.nav-link[data-target="${targetId}"]`);
+            if(activeLink) {
+                activeLink.classList.remove('text-gray-300');
+                activeLink.classList.add('bg-brand-900', 'text-white');
+            }
+
+            // Close mobile menu if open
+            if(window.innerWidth < 1024) {
+                sidebar.classList.add('-translate-x-full');
+            }
+        }
+    </script>
+</body>
+</html>
