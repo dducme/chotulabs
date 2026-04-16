@@ -503,11 +503,8 @@ footer { background: var(--cl-black); color: white; padding: 64px 8vw 32px; }
   .hero { grid-template-columns: 1fr; min-height: auto; }
   .hero-left { padding: 44px 5vw 36px; order: 2; }
   .hero-right { min-height: 320px; order: 1; width: 100%; }
-  .hero-product-img {
-  object-position: center top; /* shows bottle from top, not cropped */
-}
+  .hero-product-img { object-position: center center; max-width: none; }
   .hero-badge { bottom: 18px; right: 18px; width: 66px; height: 66px; font-size: 9px; }
-  .hero-product-img { max-width: 190px; }
   .hero-title { letter-spacing: -1px; }
   .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .promo-band { grid-template-columns: 1fr; }
