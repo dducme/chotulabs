@@ -502,7 +502,10 @@ footer { background: var(--cl-black); color: white; padding: 64px 8vw 32px; }
   section { padding: 52px 5vw; }
   .hero { grid-template-columns: 1fr; min-height: auto; }
   .hero-left { padding: 44px 5vw 36px; order: 2; }
-  .hero-right { min-height: 260px; order: 1; }
+  .hero-right { min-height: 320px; order: 1; width: 100%; }
+  .hero-product-img {
+  object-position: center top; /* shows bottle from top, not cropped */
+}
   .hero-badge { bottom: 18px; right: 18px; width: 66px; height: 66px; font-size: 9px; }
   .hero-product-img { max-width: 190px; }
   .hero-title { letter-spacing: -1px; }
@@ -529,7 +532,7 @@ footer { background: var(--cl-black); color: white; padding: 64px 8vw 32px; }
   .footer-top { grid-template-columns: 1fr; }
   .lead-form-wrapper { padding: 24px 20px; }
   .testi-grid { grid-template-columns: 1fr; }
-  .hero-right { min-height: 220px; }
+  .hero-right { min-height: 280px; width: 100%; }
 }
 </style>
 </head>
