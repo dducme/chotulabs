@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join the Flavour Club — Chotulabs</title>
+  <meta name="description" content="Unlock 20% off your first order. Join the Chotulabs Flavour Club for exclusive small-batch drops, secret recipes, and high-heat updates.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#0d0d0d',
+              white: '#faf9f6',
+              cream: '#f5f2ea',
+              orange: '#e8500a',
+              orangeDark: '#c03d04',
+              yellow: '#f5c842',
+              green: '#2d5a27',
+              gray: '#888580',
+              border: '#e0dbd0',
+            }
+          },
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      background-color: #faf9f6;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .font-display {
+      font-family: 'Syne', sans-serif;
+    }
+    /* Smooth transition for active tab selections */
+    .transition-all-300 {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    /* Premium glass effects */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    /* Subtle pulsing badge */
+    @keyframes pulse-slow {
+      0%, 100% { transform: scale(1); opacity: 0.95; }
+      50% { transform: scale(1.03); opacity: 1; }
+    }
+    .pulse-badge {
+      animation: pulse-slow 3s infinite ease-in-out;
+    }
+    /* Rotating sticker element */
+    @keyframes spin-slow {
+      to { transform: rotate(360deg); }
+    }
+    .spin-sticker {
+      animation: spin-slow 16s linear infinite;
+    }
+  </style>
+</head>
+<body class="text-brand-black min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-brand-orange selection:text-white">
+
+  <!-- DEDICATED LANDING PAGE HEADER (UX Best Practice: Distraction-free, focused entirely on the conversion goal) -->
+  <header class="w-full h-16 border-b border-brand-border flex items-center justify-between px-6 lg:px-12 bg-brand-white z-50">
+    <div class="flex items-center gap-3 cursor-pointer" onclick="resetForm()">
+      <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="18" cy="18" r="17" fill="#0d0d0d"/>
+        <circle cx="18" cy="18" r="12" fill="#e8500a"/>
+        <path d="M12 22 C12 22 14 14 18 13 C22 12 22 14 20 16 C18 18 16 18 18 20 C20 22 24 22 24 22" stroke="#f5c842" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <circle cx="18" cy="10" r="2.5" fill="#faf9f6"/>
+      </svg>
+      <span class="font-display font-extrabold text-xl tracking-tight">Chotulabs</span>
+    </div>
+    
+    <div class="flex items-center gap-2">
+      <span class="hidden sm:inline-block text-xs font-display font-bold uppercase tracking-widest text-brand-gray bg-brand-cream px-3 py-1 rounded-full">Inner Circle</span>
+      <div class="w-2.5 h-2.5 bg-brand-orange rounded-full animate-ping"></div>
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER -->
+  <main class="flex-grow flex flex-col items-center">
+    
+    <!-- LANDING CONTEXT / SPLIT HERO -->
+    <section id="signUpContainer" class="w-full max-w-7xl px-4 py-8 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center transition-all duration-500 ease-in-out">
+      
+      <!-- LEFT COLUMN: Value Proposition -->
+      <div class="lg:col-span-6 flex flex-col gap-6 lg:pr-8">
+        <div class="inline-flex items-center gap-2 text-brand-orange">
+          <span class="h-0.5 w-6 bg-brand-orange"></span>
+          <span class="font-display text-xs font-bold uppercase tracking-widest">The Flavour Club</span>
+        </div>
+        
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] text-brand-black">
+          Small batches.<br>Big flavors.<br><span class="italic text-brand-orange text-gradient">Zero secrets.</span>
+        </h1>
+        
+        <p class="text-brand-gray text-base sm:text-lg font-light leading-relaxed max-w-lg">
+          We don't do mass production, and we definitely don't do boring. Join <span class="font-bold text-brand-black">4,200+ fire-breathers</span> in the inner circle to claim an instant discount and dominate your kitchen.
+        </p>
+        
+        <!-- Trust elements -->
+        <div class="grid grid-cols-3 gap-4 border-t border-b border-brand-border py-6 mt-4">
+          <div class="flex flex-col">
+            <span class="font-display text-2xl font-extrabold text-brand-orange">20% Off</span>
+            <span class="text-xs text-brand-gray mt-1">First Drop Order</span>
+          </div>
+          <div class="flex flex-col border-l border-brand-border pl-4">
+            <span class="font-display text-2xl font-extrabold text-brand-black">Priority</span>
+            <span class="text-xs text-brand-gray mt-1">Limited Micro-Batches</span>
+          </div>
+          <div class="flex flex-col border-l border-brand-border pl-4">
+            <span class="font-display text-2xl font-extrabold text-brand-green">Free</span>
+            <span class="text-xs text-brand-gray mt-1">Curated Lab Recipes</span>
+          </div>
+        </div>
+
+        <!-- Mini testy card -->
+        <div class="bg-brand-cream p-5 rounded-2xl relative overflow-hidden mt-4 border border-[#e8e4da]">
+          <span class="absolute top-2 right-4 text-4xl opacity-10 font-serif select-none">“</span>
+          <div class="flex text-brand-yellow text-sm gap-0.5 mb-2">★ ★ ★ ★ ★</div>
+          <p class="text-sm italic text-[#555] mb-3">"The monthly test bottles are wild. The club-exclusive Mango Ghost blend completely transformed our Friday night taco game."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-brand-orange text-white flex items-center justify-center font-display text-xs font-bold">SM</div>
+            <div>
+              <p class="text-xs font-bold text-brand-black">Siddharth M.</p>
+              <p class="text-[10px] text-brand-gray">Club Member · Kochi</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- RIGHT COLUMN: Elegant Lead Capture System -->
+      <div class="lg:col-span-6 flex justify-center">
+        <div class="w-full max-w-xl bg-white border border-brand-border rounded-3xl p-6 sm:p-10 shadow-xl shadow-[#0d0d0d05] relative overflow-hidden">
+          
+          <!-- Sticky visual anchor (spin element) -->
+          <div class="absolute -top-12 -right-12 w-28 h-28 bg-brand-yellow rounded-full flex items-center justify-center spin-sticker select-none pointer-events-none opacity-20 sm:opacity-100">
+            <div class="font-display text-[8px] font-extrabold tracking-widest text-center leading-tight">
+              • FLAVOUR • CLUB • SECRET • LAB •
+            </div>
+          </div>
+
+          <div class="mb-8">
+            <h2 class="font-display text-2xl sm:text-3xl font-extrabold tracking-tight">Claim Your Invitation</h2>
+            <p class="text-sm text-brand-gray mt-1">Unlock 20% off your first bottle & claim early access to Batch #019.</p>
+          </div>
+          
+          <form id="flavourClubForm" onsubmit="submitForm(event)" class="space-y-5">
+            
+            <!-- Basic info fields row -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="flex flex-col gap-1.5">
+                <label for="fullName" class="text-xs font-bold uppercase tracking-wider text-brand-gray">Full Name *</label>
+                <input type="text" id="fullName" required placeholder="Arjun Nair" 
+                       class="w-full px-4 py-3 border border-brand-border rounded-xl focus:border-brand-orange focus:ring-1 focus:ring-brand-orange outline-none bg-brand-white text-sm transition-all">
+              </div>
+              <div class="flex flex-col gap-1.5">
+                <label for="emailAddr" class="text-xs font-bold uppercase tracking-wider text-brand-gray">Email Address *</label>
+                <input type="email" id="emailAddr" required placeholder="arjun@chotulabs.in" 
+                       class="w-full px-4 py-3 border border-brand-border rounded-xl focus:border-brand-orange focus:ring-1 focus:ring-brand-orange outline-none bg-brand-white text-sm transition-all">
+              </div>
+            </div>
+
+            <!-- Optional Phone Field with contextual explanation -->
+            <div class="flex flex-col gap-1.5">
+              <div class="flex justify-between items-baseline">
+                <label for="phoneNumber" class="text-xs font-bold uppercase tracking-wider text-brand-gray">WhatsApp / Phone</label>
+                <span class="text-[10px] text-brand-gray font-light">For flash drop SMS alerts</span>
+              </div>
+              <input type="tel" id="phoneNumber" placeholder="+91 98765 43210" 
+                     class="w-full px-4 py-3 border border-brand-border rounded-xl focus:border-brand-orange focus:ring-1 focus:ring-brand-orange outline-none bg-brand-white text-sm transition-all">
+            </div>
+
+            <!-- INTERACTIVE SPECIFICATION: The Spice Meter (Increases Form Conversion Engagement) -->
+            <div class="flex flex-col gap-3 pt-2">
+              <label class="text-xs font-bold uppercase tracking-wider text-brand-gray flex justify-between items-center">
+                <span>Your Heat Tolerance:</span>
+                <span id="heatSelectionLabel" class="text-brand-orange font-extrabold tracking-wide font-display">Tame & Tasty 🌶️</span>
+              </label>
+              
+              <!-- Segmented Slider Selector -->
+              <input type="range" id="heatRange" min="1" max="4" value="1" step="1" oninput="updateHeatMeter(this.value)"
+                     class="w-full h-2 bg-brand-cream rounded-lg appearance-none cursor-pointer accent-brand-orange">
+              
+              <!-- Scale markers -->
+              <div class="grid grid-cols-4 text-center text-[10px] font-display font-bold text-brand-gray">
+                <span id="lbl1" class="text-brand-orange cursor-pointer" onclick="setSlider(1)">MILD</span>
+                <span id="lbl2" class="cursor-pointer" onclick="setSlider(2)">MEDIUM</span>
+                <span id="lbl3" class="cursor-pointer" onclick="setSlider(3)">HOT</span>
+                <span id="lbl4" class="cursor-pointer" onclick="setSlider(4)">CHAOTIC</span>
+              </div>
+            </div>
+
+            <!-- Checkbox Policy agreement -->
+            <div class="flex items-start gap-2.5 pt-2">
+              <input type="checkbox" id="consentCheck" required checked
+                     class="w-4 h-4 rounded text-brand-orange border-brand-border focus:ring-brand-orange mt-0.5 accent-brand-orange">
+              <label for="consentCheck" class="text-xs text-brand-gray leading-tight">
+                I want to join the inner circle. Send me 20% off and notify me when new, extremely limited small batches are ready. Unsubscribe anytime.
+              </label>
+            </div>
+
+            <!-- Action Button -->
+            <button type="submit" class="w-full py-4 bg-brand-black hover:bg-brand-orange text-white font-display font-bold text-sm uppercase tracking-widest rounded-xl transition-all duration-300 transform active:scale-[0.98] mt-3 hover:shadow-lg hover:shadow-[#e8500a1c]">
+              Claim 20% Discount Key →
+            </button>
+            
+            <p class="text-center text-[10px] text-brand-gray pt-1">🔒 Your data is sacred. No spam. Only premium heat.</p>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PREMIUM INTERACTIVE THANK YOU STATE / PAGE OVERLAY -->
+    <section id="thankYouContainer" class="hidden w-full max-w-4xl px-4 py-12 md:py-24 transition-all duration-500 ease-in-out">
+      <div class="bg-white border-2 border-brand-black rounded-3xl p-8 md:p-14 text-center shadow-2xl relative overflow-hidden">
+        
+        <!-- Animated success fire element -->
+        <div class="w-20 h-20 bg-brand-cream border border-brand-border rounded-full flex items-center justify-center mx-auto mb-6 text-4xl animate-bounce">
+          🔥
+        </div>
+        
+        <h2 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight mb-2">You're in the Lab.</h2>
+        <p class="text-brand-gray text-base max-w-xl mx-auto mb-8">
+          Welcome to the Chotulabs inner circle, <span id="thankYouName" class="font-bold text-brand-black">Spice Lover</span>! We have calculated your profile and matched you to the ultimate lineup.
+        </p>
+
+        <!-- Dynamic curated recommendation based on selected spice level -->
+        <div class="bg-brand-cream border border-brand-border rounded-2xl p-6 mb-8 max-w-2xl mx-auto text-left flex flex-col sm:flex-row items-center gap-6">
+          <div id="recImage" class="w-24 h-24 bg-white border border-brand-border rounded-xl flex-shrink-0 flex items-center justify-center text-4xl overflow-hidden shadow-sm">
+            🌶️
+          </div>
+          <div>
+            <span class="text-[10px] font-display font-extrabold bg-brand-orange text-white px-2.5 py-0.5 rounded-full uppercase tracking-wider">Your Flavor Matches</span>
+            <h4 id="recTitle" class="font-display text-lg font-bold mt-1 text-brand-black">Mango Habanero Bliss</h4>
+            <p id="recDesc" class="text-xs text-brand-gray mt-1 leading-relaxed">Perfectly suited to your taste profile. A sweet, vibrant heat that accents pizza, tacos, and grilled breakfast bowls beautifully.</p>
+          </div>
+        </div>
+
+        <!-- Custom Discount Code Generator Card -->
+        <div class="max-w-md mx-auto bg-brand-white border-2 border-dashed border-brand-border p-6 rounded-2xl mb-8">
+          <p class="text-xs text-brand-gray font-bold uppercase tracking-widest mb-2">YOUR FIRST FLAVOUR KEY</p>
+          
+          <div class="flex items-center justify-between bg-white border border-brand-border rounded-xl p-3 pl-4">
+            <span id="discountKey" class="font-display text-xl font-extrabold tracking-wider text-brand-orange">FLAVOUR20</span>
+            <button onclick="copyDiscountKey()" class="px-4 py-2 bg-brand-black hover:bg-brand-orange text-white font-display text-xs font-bold uppercase tracking-wider rounded-lg transition-all duration-200" id="copyBtn">
+              Copy Key
+            </button>
+          </div>
+          <p class="text-[10px] text-brand-gray mt-3">Enter this code at checkout for <strong class="text-brand-black">20% off</strong>. A copy has also landed in your inbox.</p>
+        </div>
+
+        <!-- Call to Actions -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="#products" onclick="goToStore()" class="px-8 py-4 bg-brand-black hover:bg-brand-orange text-white font-display font-bold text-sm uppercase tracking-widest rounded-full transition-all duration-200 w-full sm:w-auto text-center shadow-md">
+            Unlock Small-Batch Store →
+          </a>
+          <button onclick="resetForm()" class="px-6 py-4 border border-brand-border hover:border-brand-black text-brand-gray hover:text-brand-black font-display font-bold text-xs uppercase tracking-wider rounded-full transition-all duration-150 w-full sm:w-auto">
+            Back to Sign up
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROOF / BENEFITS SECTION (Adds authority and drives sign ups below form) -->
+    <section class="w-full bg-brand-cream border-t border-b border-brand-border py-12 px-6 lg:px-12 mt-12">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="flex gap-4">
+          <span class="text-3xl">⚗️</span>
+          <div>
+            <h3 class="font-display font-bold text-base">Unfiltered Access</h3>
+            <p class="text-xs text-brand-gray mt-1 leading-relaxed">Members get direct early access to monthly experimental test sauces before public releases.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <span class="text-3xl">🌿</span>
+          <div>
+            <h3 class="font-display font-bold text-base">Only Real Ingredients</h3>
+            <p class="text-xs text-brand-gray mt-1 leading-relaxed">No thickeners, corn syrup, or synthetic colors. 100% natural chillies sourced right from farmers in Kerala.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <span class="text-3xl">🛒</span>
+          <div>
+            <h3 class="font-display font-bold text-base">Member Deals</h3>
+            <p class="text-xs text-brand-gray mt-1 leading-relaxed">Unlock dynamic loyalty discounts, free recipe manuals, and zero-fee upgrades on custom gift bundles.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="w-full bg-brand-black text-white py-10 px-6 lg:px-12 mt-auto border-t border-[#1a1a1a]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <svg class="w-6 h-6" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="18" cy="18" r="17" fill="#1a1a1a"/>
+          <circle cx="18" cy="18" r="12" fill="#e8500a"/>
+          <path d="M12 22 C12 22 14 14 18 13 C22 12 22 14 20 16 C18 18 16 18 18 20 C20 22 24 22 24 22" stroke="#f5c842" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <circle cx="18" cy="10" r="2.5" fill="#faf9f6"/>
+        </svg>
+        <span class="font-display font-bold text-sm uppercase tracking-wider">Chotulabs</span>
+      </div>
+      
+      <p class="text-xs text-[#555] text-center md:text-right">
+        © 2025 Chotulabs. Handcrafted in Kochi, Kerala. Unsubscribe from the Flavour Club at any time.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="customToast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-brand-black text-white text-xs font-display font-bold tracking-wider px-6 py-3 rounded-full opacity-0 pointer-events-none transition-all duration-300 shadow-xl z-50">
+    Discount code copied!
+  </div>
+
+  <script>
+    // Heat level presets mapping for curated recommendation on Thank You state
+    const heatPresets = {
+      1: {
+        label: "Tame & Tasty 🌶️",
+        name: "Mango Habanero Bliss",
+        desc: "Curated with mild taste preferences in mind. Perfectly balances mango sweetness with clean habanero highlights. Ideal for flatbreads, pizza, or family breakfasts.",
+        image: "https://raw.githubusercontent.com/dducme/chotulabs/main/images/Mango%20Habanero%20Bliss%20PP.webp"
+      },
+      2: {
+        label: "Respectable Zing 🌶️🌶️",
+        name: "Chettinad Masala Blend",
+        desc: "A rich, deep South Indian recipe balanced for direct table presence. Beautiful roasted spices and medium warmth that complements roasted veggies and curries.",
+        image: "https://raw.githubusercontent.com/dducme/chotulabs/main/images/Chettinad%20Masala%20Blend%20PP.webp"
+      },
+      3: {
+        label: "Advanced Heat Lover 🌶️🌶️🌶️",
+        name: "Peri Peri Classic",
+        desc: "Features fiery African Bird’s Eye chillies. High energy heat designed for direct meat marinades, deep-frying chicken, and heavy-duty kitchen exploration.",
+        image: "https://raw.githubusercontent.com/dducme/chotulabs/main/images/Peri%20Peri%20Classic.webp"
+      },
+      4: {
+        label: "Chaotic Heat Chaser 🔥🔥",
+        name: "Ghost Reaper XXXL",
+        desc: "Absolute chaos. Blends the fearsome Carolina Reaper with authentic Indian Ghost Peppers. Made solely for experts, heat-eaters, and thrill-seekers.",
+        image: "https://raw.githubusercontent.com/dducme/chotulabs/main/images/Ghost%20Reaper%20XXXL%20PP.webp"
+      }
+    };
+
+    // Update slider visually
+    function updateHeatMeter(value) {
+      const selection = heatPresets[value];
+      document.getElementById('heatSelectionLabel').textContent = selection.label;
+      
+      // Highlight label scale colors
+      for (let i = 1; i <= 4; i++) {
+        const lbl = document.getElementById('lbl' + i);
+        if (i == value) {
+          lbl.classList.add('text-brand-orange');
+          lbl.classList.remove('text-brand-gray');
+        } else {
+          lbl.classList.remove('text-brand-orange');
+          lbl.classList.add('text-brand-gray');
+        }
+      }
+    }
+
+    function setSlider(val) {
+      document.getElementById('heatRange').value = val;
+      updateHeatMeter(val);
+    }
+
+    // Handles sign up and launches custom visual transitions
+    function submitForm(event) {
+      event.preventDefault();
+      
+      const nameInput = document.getElementById('fullName').value.trim();
+      const emailInput = document.getElementById('emailAddr').value.trim();
+      const phoneInput = document.getElementById('phoneNumber').value.trim();
+      const heatSelected = document.getElementById('heatRange').value;
+      
+      // GA4 event triggers
+      console.log('[GA4] Lead captured via Flavour Club Page', { name: nameInput, email: emailInput, heatTolerance: heatSelected });
+
+      // Generate customized code for the user
+      const dynamicPrefix = nameInput.split(' ')[0].substring(0,4).toUpperCase().replace(/[^A-Z]/g, 'CLUB');
+      document.getElementById('discountKey').textContent = dynamicPrefix + '20';
+
+      // Update customized values in the Thank You Screen
+      document.getElementById('thankYouName').textContent = nameInput;
+      
+      const matchedFlavor = heatPresets[heatSelected];
+      document.getElementById('recTitle').textContent = matchedFlavor.name;
+      document.getElementById('recDesc').textContent = matchedFlavor.desc;
+      
+      // Set curated image display
+      const imgContainer = document.getElementById('recImage');
+      imgContainer.innerHTML = `<img src="${matchedFlavor.image}" alt="${matchedFlavor.name}" class="w-full h-full object-cover">`;
+
+      // Smooth switch transition states
+      document.getElementById('signUpContainer').classList.add('hidden');
+      const thankYou = document.getElementById('thankYouContainer');
+      thankYou.classList.remove('hidden');
+      thankYou.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Direct clipboard utility
+    function copyDiscountKey() {
+      const key = document.getElementById('discountKey').textContent;
+      
+      // Modern fallback for embedded frame support
+      const el = document.createElement('textarea');
+      el.value = key;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+
+      const copyBtn = document.getElementById('copyBtn');
+      copyBtn.textContent = 'Copied!';
+      copyBtn.classList.add('bg-brand-green');
+      
+      showToast('🎉 Discount key copied to your clipboard!');
+
+      setTimeout(() => {
+        copyBtn.textContent = 'Copy Key';
+        copyBtn.classList.remove('bg-brand-green');
+      }, 3000);
+    }
+
+    // Universal custom toast notification
+    function showToast(text) {
+      const toast = document.getElementById('customToast');
+      toast.textContent = text;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      toast.classList.add('opacity-100');
+      
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+        toast.classList.remove('opacity-100');
+      }, 2500);
+    }
+
+    // Back utility resetting screen state
+    function resetForm() {
+      document.getElementById('flavourClubForm').reset();
+      setSlider(1);
+      document.getElementById('thankYouContainer').classList.add('hidden');
+      document.getElementById('signUpContainer').classList.remove('hidden');
+    }
+
+    function goToStore() {
+      showToast('🚀 Redirecting you to the Chotulabs Bestseller store page...');
+    }
+  </script>
+</body>
+</html>
